@@ -16,6 +16,9 @@ var commentRoutes    = require("./routes/comments"),
     udemyRoutes = require("./routes/udemy"),
     indexRoutes      = require("./routes/index")
 
+    var port = process.env.PORT || 8080;
+
+
     // Connect to database
     if (process.env.MONGODB_URI) {
       mongoose.connect(process.env.MONGODB_URI);
@@ -62,7 +65,6 @@ app.use("/", indexRoutes);
 app.use("/udemy", udemyRoutes);
 app.use("/udemy/:id/comments", commentRoutes);
 
-
-app.listen(3000, function(){
-   console.log("The Udemy Review Server Has Started!");
+app.listen(port, function() {
+  console.log('Our app is running on http://localhost:' + port);
 });
