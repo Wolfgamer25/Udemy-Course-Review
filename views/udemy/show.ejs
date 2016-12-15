@@ -1,0 +1,53 @@
+<% include ../partials/header %>
+<div class="container" style="text-align:center;">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Udemy Course</p>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= udemy.image %>">
+                <div class="caption-full">
+                    <h4 class="pull-right">$15.00</h4>
+                    <h4><a><%=udemy.name%></a></h4>
+                    <a href='<%= udemy.description %>'><%= udemy.description %></a>
+                    <p>
+                        <em>Submitted By <%= udemy.author.username %></em>
+                    </p>
+                    <% if(currentUser && udemy.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/udemy/<%= udemy._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/udemy/<%= udemy._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% }%>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/udemy/<%= udemy._id %>/comments/new">Add New Comment</a>
+                </div>
+                <hr>
+                <% udemy.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="pull-right">0 days ago</span>
+                            <p>
+                                <%= comment.text %>
+                            </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning"
+                               href="/udemy/<%=udemy._id %>/comments/<%=comment._id %>/edit">Edit</a>
+                            <form id="delete-form" action="/udemy/<%=udemy._id %>/comments/<%=comment._id %>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

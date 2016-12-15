@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Udemy Review</title>
+        <!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+        <link rel="stylesheet" href="/stylesheets/main.css">
+    </head>
+    <body>
+      <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">UdemyReview</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if(!currentUser){ %>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Sign Up</a></li>
+        <% } else { %>
+            <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+            <li><a href="/logout">Logout</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="container">
+
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+                <%= success %>
+            </div>
+        <% } %>
+    </div>
