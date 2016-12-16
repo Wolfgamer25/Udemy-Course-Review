@@ -6,12 +6,12 @@ where people who completed the course can leave a review and people who interest
 reviews.
 
 #Technologies Used
-*Html
-*Css
-*javascript
-*NodeJs
-*mongodb
-*mongoose
+* Html
+* Css
+* javascript
+* NodeJs
+* mongodb
+* mongoose
 
 #links
 [UdemyReview](https://intense-savannah-36248.herokuapp.com/)
